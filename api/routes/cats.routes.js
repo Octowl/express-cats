@@ -7,9 +7,7 @@ const {
   updateCat,
   deleteCat,
 } = require("../controllers/cats.controllers");
-
-const findCat = require("../../middleware/findCat");
-const rejectDemonCats = require("../../middleware/rejectDemonCats");
+const { findCat, rejectDemonCats } = require("../../middleware");
 const upload = require("../../middleware/multer");
 
 const router = express.Router();
