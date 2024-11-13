@@ -11,6 +11,7 @@ const CatSchema = new Schema(
     age: { type: Number, required: true },
     breed: { type: String },
     color: { type: String },
+    image: { type: String },
     adopted: { type: Boolean, required: true, default: false },
   },
   {

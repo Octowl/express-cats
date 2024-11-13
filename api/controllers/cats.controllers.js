@@ -20,6 +20,8 @@ const catDetail = async function (req, res) {
 
 const createCat = async function (req, res, next) {
   try {
+    if (req.file)
+      req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
     const newCat = await Cat.create(req.body);
     res.status(201).json(newCat);
   } catch (error) {
@@ -29,6 +31,9 @@ const createCat = async function (req, res, next) {
 
 const updateCat = async function (req, res, next) {
   try {
+    if (req.file)
+      req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
+
     for (const key in req.body) req.cat[key] = req.body[key];
     req.cat.save();
     res.status(200).json(req.cat);
