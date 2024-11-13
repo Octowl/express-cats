@@ -1,5 +1,4 @@
 const express = require("express");
-const multer = require("multer");
 
 const {
   catList,
@@ -8,16 +7,10 @@ const {
   updateCat,
   deleteCat,
 } = require("../controllers/cats.controllers");
-const { rejectDemonCats, findCat } = require("../../middlewares");
 
-const storage = multer.diskStorage({
-  destination: "./media",
-  filename: (req, file, cb) => {
-    cb(null, `${+new Date()}${file.originalname}`);
-  },
-});
-
-const upload = multer({ storage });
+const findCat = require("../../middleware/findCat");
+const rejectDemonCats = require("../../middleware/rejectDemonCats");
+const upload = require("../../middleware/multer");
 
 const router = express.Router();
 

@@ -5,7 +5,7 @@ const path = require("path");
 
 const catsRouter = require("./api/routes/cats.routes");
 const connectDB = require("./database");
-const { handleErrors } = require("./middlewares");
+const handleErrors = require("./middleware/handleErrors");
 
 const app = express();
 
