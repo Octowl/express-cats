@@ -1,12 +1,14 @@
 const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
 
 const catsRouter = require("./api/routes/cats.routes");
 const connectDB = require("./database");
-const morgan = require("morgan");
 const { handleErrors } = require("./middlewares");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 app.use("/cats", catsRouter);

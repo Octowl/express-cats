@@ -1,8 +1,13 @@
 const { model, Schema } = require("mongoose");
+const mongooseSlugPlugin = require("mongoose-slug-plugin");
 
 const CatSchema = new Schema(
   {
-    name: { type: String, required: [true, "Where da name??!"] },
+    name: {
+      type: String,
+      required: [true, "Where da name??!"],
+      unique: [true, "We already have a cat with that name"],
+    },
     age: { type: Number, required: true },
     breed: { type: String },
     color: { type: String },
@@ -17,5 +22,7 @@ const CatSchema = new Schema(
     },
   }
 );
+
+CatSchema.plugin(mongooseSlugPlugin, { tmpl: "<%=name%>" });
 
 module.exports = model("Cat", CatSchema);

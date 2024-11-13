@@ -1,16 +1,21 @@
 const express = require("express");
-const { catList, catDetail, createCat, updateCat, deleteCat } =
-  require("../controllers/cats.controllers").default;
+const {
+  catList,
+  catDetail,
+  createCat,
+  updateCat,
+  deleteCat,
+} = require("../controllers/cats.controllers");
 const { rejectDemonCats, findCat } = require("../../middlewares");
 
 const router = express.Router();
 
-router.param("catId", findCat);
+router.param("catSlug", findCat);
 
 router.get("/", catList);
-router.get("/:catId", catDetail);
+router.get("/:catSlug", catDetail);
 router.post("/", rejectDemonCats, createCat);
-router.put("/:catId", updateCat);
-router.delete("/:catId", deleteCat);
+router.put("/:catSlug", updateCat);
+router.delete("/:catSlug", deleteCat);
 
 module.exports = router;

@@ -24,11 +24,11 @@ const handleErrors = function (err, req, res, next) {
     .json({ message: err.message ?? "Internal Server Error" });
 };
 
-const findCat = async function (req, res, next, catId) {
+const findCat = async function (req, res, next, catSlug) {
   let foundCat;
 
   try {
-    foundCat = await Cat.findById(catId);
+    foundCat = await Cat.findOne({ slug: catSlug });
     if (!foundCat) {
       const error = new Error("Cat not found");
       error.status = 404;
