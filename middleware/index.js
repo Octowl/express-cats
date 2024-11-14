@@ -1,6 +1,6 @@
 const findCat = require("./findCat");
 const handleErrors = require("./handleErrors");
 const rejectDemonCats = require("./rejectDemonCats");
-const multer = require("./multer");
+const upload = require("./multer");
 
-module.exports = { findCat, handleErrors, rejectDemonCats, multer };
+module.exports = { findCat, handleErrors, rejectDemonCats, upload };
