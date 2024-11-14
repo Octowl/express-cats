@@ -23,10 +23,4 @@ app.all("*", (req, res) => {
 
 app.use(handleErrors);
 
-const PORT = 1337;
-
-connectDB();
-
-app.listen(PORT, () => {
-  console.log(`The server is running on port http://localhost:${PORT}`);
-});
+module.exports = app;
