@@ -6,6 +6,7 @@ const path = require("path");
 const catsRouter = require("./api/routes/cats.routes");
 const connectDB = require("./database");
 const { handleErrors } = require("./middleware");
+const { NotFoundError } = require("./errors");
 
 const app = express();
 
@@ -15,10 +16,8 @@ app.use(morgan("dev"));
 
 app.use("/media", express.static(path.join(__dirname, "media")));
 app.use("/cats", catsRouter);
-app.all("*", (req, res) => {
-  res
-    .status(404)
-    .json({ message: `${req.method} ${req.url}: Route not found` });
+app.all("*", (req) => {
+  throw NotFoundError(`${req.method} ${req.url}: Route not found`);
 });
 
 app.use(handleErrors);

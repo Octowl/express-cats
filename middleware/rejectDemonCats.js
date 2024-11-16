@@ -1,8 +1,8 @@
+const { BadRequestError } = require("../errors");
+
 const rejectDemonCats = function (req, res, next) {
   if (req.body.color.toLowerCase() === "orange")
-    return res
-      .status(400)
-      .json({ message: "Sorry, we don't accept demon cats" });
+    throw BadRequestError("Sorry, we don't accept demon cats");
   next();
 };
 

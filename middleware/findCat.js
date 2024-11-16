@@ -1,18 +1,10 @@
 const Cat = require("../api/models/Cat");
+const { NotFoundError } = require("../errors");
 
 const findCat = async function (req, res, next, catSlug) {
-  let foundCat;
+  const foundCat = await Cat.findOne({ slug: catSlug });
 
-  try {
-    foundCat = await Cat.findOne({ slug: catSlug });
-    if (!foundCat) {
-      const error = new Error("Cat not found");
-      error.status = 404;
-      return next(error);
-    }
-  } catch (error) {
-    next(error);
-  }
+  if (!foundCat) return next(NotFoundError("Cat not found"));
 
   req.cat = foundCat;
   next();
