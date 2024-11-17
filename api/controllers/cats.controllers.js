@@ -21,7 +21,7 @@ const createCat = async function (req, res) {
   res.status(201).json(newCat);
 };
 
-const updateCat = async function (req, res, next) {
+const updateCat = async function (req, res) {
   if (req.file)
     req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
 
@@ -31,7 +31,7 @@ const updateCat = async function (req, res, next) {
   res.status(200).json(req.cat);
 };
 
-const deleteCat = async function (req, res, next) {
+const deleteCat = async function (req, res) {
   await req.cat.deleteOne();
   res.status(204).end();
 };
