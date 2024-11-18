@@ -15,8 +15,7 @@ const catDetail = async function (req, res) {
 };
 
 const createCat = async function (req, res) {
-  if (req.file)
-    req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
+  if (req.file) req.body.image = req.file.location;
   const newCat = await Cat.create(req.body);
   res.status(201).json(newCat);
 };
