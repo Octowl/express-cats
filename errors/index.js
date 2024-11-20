@@ -28,4 +28,13 @@ function RequestValidationError(
   return err;
 }
 
-module.exports = { NotFoundError, BadRequestError, RequestValidationError };
+function NotAuthorizedError(message = "Not Authorized", status = 401) {
+  return CustomError({ message, status });
+}
+
+module.exports = {
+  NotFoundError,
+  BadRequestError,
+  RequestValidationError,
+  NotAuthorizedError,
+};
