@@ -1,4 +1,4 @@
-const Cat = require("../api/models/Cat");
+const Cat = require("../models/Cat");
 const { NotFoundError } = require("../errors");
 
 const findCat = async function (req, res, next, catSlug) {

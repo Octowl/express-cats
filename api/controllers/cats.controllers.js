@@ -1,4 +1,4 @@
-const Cat = require("../models/Cat");
+const Cat = require("../../models/Cat");
 
 const catList = async function (req, res) {
   const { name } = req.query;
